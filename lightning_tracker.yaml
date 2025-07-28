@@ -137,6 +137,7 @@ actions:
       input_google_maps_api_key: !input google_maps_api_key
       input_include_map_image: !input include_map_image
       input_show_device_location: !input show_device_location
+      input_cooldown_minutes: !input cooldown_minutes
 
   - action: homeassistant.update_entity
     metadata: {}
@@ -151,6 +152,7 @@ actions:
       data:
         notification_icon: mdi:flash
         channel: "{{ input_notification_channel }}"
+        timeout: "{{ input_cooldown_minutes * 60 | int }}"
         ttl: 0
         priority: high
         clickAction: >-
@@ -163,6 +165,6 @@ actions:
           {%- endif -%}
   
   - delay:
-      minutes: !input cooldown_minutes
+      minutes: input_cooldown_minutes
 
 mode: single
