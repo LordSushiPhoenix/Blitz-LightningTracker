@@ -165,6 +165,6 @@ actions:
           {%- endif -%}
   
   - delay:
-      minutes: input_cooldown_minutes
+      minutes: "{{ input_cooldown_minutes }}"
 
 mode: single
